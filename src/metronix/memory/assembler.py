@@ -222,7 +222,7 @@ class AgentContextAssembler:
         top_k: int,
         session_id: str | None = None,
     ) -> tuple[str, int]:
-        if self._memory_search is None:
+        if self._memory_search is None or not query.strip():
             return "", 0
         results = await self._memory_search.hybrid_search(
             workspace_id=workspace_id,
